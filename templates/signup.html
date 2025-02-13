@@ -7,15 +7,38 @@
 
 <body>
 
-	<!--<form method="post">-->
-	<!--	<label for="name">Name: </label>-->
-	<!--	<input type="text" name="name" required>-->
-	<!--	<label for="email">Email: </label>-->
-	<!--	<input type="text" name="email" required>-->
-	<!--	<label for="password">Password: </label>-->
-	<!--	<input type="text" name="password" required>-->
-	<!--</form>-->
-	<h1>hello</h1>
+	<form method="post">
+		<label for="name">Name: </label>
+		<input type="text" name="name" required>
+		<br><br>
+		<label for="email">Email: </label>
+		<input type="text" name="email" required>
+		<br><br>
+		<label for="password">Password: </label>
+		<input type="password" name="password" required>
+		<input type="submit" value="submit">
+	</form>
 </body>
 
 </html>
+
+
+
+{% extend "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<form method="post">
+	<label for="name">Name: </label>
+	<input type="text" name="name" required>
+	<br><br>
+	<label for="email">Email: </label>
+	<input type="text" name="email" required>
+	<br><br>
+	<label for="password">Password: </label>
+	<input type="password" name="password" required>
+	<input type="submit" value="submit">
+</form>

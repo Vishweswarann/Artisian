@@ -1,15 +1,16 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = "vanakam"
 
 db = SQLAlchemy(app)
 
 
-class sellerUsers(db.Model):
+class Users(db.Model):
     _id = db.Column("id", db.Integer, primary_key=True)
     name = db.Column("name", db.String(100))
     email = db.Column("email", db.String(100))
@@ -26,32 +27,60 @@ class sellerUsers(db.Model):
 def home():
     return render_template("home.html")
 
-@app.route("/seller_signup", methods = ["POST", "GET"])
+@app.route("/signup", methods = ["POST", "GET"])
 def signup():
     if request.method == "POST":
         name = request.form.get("name") 
         email = request.form.get("email") 
         password = request.form.get("password") 
+        
+        foundName = Users.query.filter_by(name = name).first()
+        foundEmail = Users.query.filter_by(email = email).first()
 
-        addUser = sellerUsers(name, email, password)
+        if foundName :
+           flash("The user already exist") 
+           return redirect(url_for('signup'))
+        if foundEmail:
+           flash("The email already exist") 
+           return redirect(url_for('signup'))
+            
+        addUser = Users(name, email, password)
         db.session.add(addUser)
         db.session.commit()
+        return "Succesfully Added"
 
     return render_template("signup.html")
 
-@app.route("/seller_login", methods = ["POST", "GET"])
+@app.route("/login", methods = ["POST", "GET"])
 def login():
     if request.method == "POST":
         email = request.form.get("email") 
         password = request.form.get("password") 
 
 
-        found_user = sellerUsers.query.filter_by(email = email).first()
+        found_user = Users.query.filter_by(email = email).first()
         if found_user:
             if found_user.password == password:
                 return render_template("user.html")
     
     return render_template("login.html")
+
+# for admin purposes - fetching all the rows and deleting a particular row
+@app.route("/query-all", methods = ["POST", "GET"])
+def query_all():
+    if request.method == "POST":
+        row = request.form.get("row")
+        user = Users.query.filter_by(name = "vk").first()
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            print("deleted")
+    all = Users.query.all()
+    if all:
+        for user in all:
+            print(f"ID: {user._id}, Name: {user.name}, Email: {user.email}")
+    return render_template("admin.html")
+    
 
 
 
