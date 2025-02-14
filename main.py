@@ -47,7 +47,8 @@ def signup():
         addUser = Users(name, email, password)
         db.session.add(addUser)
         db.session.commit()
-        return "Succesfully Added"
+        flash("Succesfully Added")
+        return redirect(url_for('login'))
 
     return render_template("signup.html")
 
@@ -61,16 +62,32 @@ def login():
         found_user = Users.query.filter_by(email = email).first()
         if found_user:
             if found_user.password == password:
-                return render_template("user.html")
+                return redirect(url_for('user'))
     
+            else:
+                print("hello")
+                flash("Invalid User credentials")
+                return redirect(url_for('login'))
+        else:
+            print("hello")
+            flash("Invalid User credentials")
+            return redirect(url_for('login'))
+
     return render_template("login.html")
+
+
+@app.route("/user")
+def user():
+    return render_template("user.html")
+
+
 
 # for admin purposes - fetching all the rows and deleting a particular row
 @app.route("/query-all", methods = ["POST", "GET"])
 def query_all():
     if request.method == "POST":
         row = request.form.get("row")
-        user = Users.query.filter_by(name = "vk").first()
+        user = Users.query.filter_by(name =row ).first()
         if user:
             db.session.delete(user)
             db.session.commit()
@@ -78,7 +95,8 @@ def query_all():
     all = Users.query.all()
     if all:
         for user in all:
-            print(f"ID: {user._id}, Name: {user.name}, Email: {user.email}")
+            print(f"ID: {user._id}, Name: {user.name}, Email: {user.email}, Password: {user.password}")
+    
     return render_template("admin.html")
     
 
