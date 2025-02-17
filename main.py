@@ -1,11 +1,19 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "vanakam"
+uploadFolder = "static/uploads"
+
+os.makedirs(uploadFolder, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = uploadFolder
+
+
+
 
 db = SQLAlchemy(app)
 
@@ -21,6 +29,26 @@ class Users(db.Model):
         self.email = email
         self.password = password
 
+
+class Product(db.Model):
+    _id = db.Column("id", db.Integer, primary_key=True)
+    productCategory = db.Column("productCategory ", db.String(100))
+    productName = db.Column("productName", db.String(100))
+    productDescription = db.Column("productDescription", db.String(300))
+    productQuantity = db.Column("productQuantity", db.Integer)
+    productPrice = db.Column("productPrice",  db.Integer)
+    productAddress = db.Column("productAddress", db.String(100))
+    productPincode = db.Column("productPincode", db.Integer)
+
+    def __init__(self, productCategory, productName, productDescription,productQuantity, productPrice, productAddress, productPincode):
+        self.productCategory = productCategory
+        self.productName = productName
+        self.productDescription = productDescription
+        self.productQuantity = productQuantity
+        self.productPrice = productPrice
+        self.productAddress = productAddress
+        self.productPincode = productPincode
+    
 
 
 @app.route("/")
@@ -76,9 +104,34 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/user")
+@app.route("/user", methods = ["POST", "GET"])
 def user():
     return render_template("user.html")
+
+@app.route("/add", methods = ["POST", "GET"])
+def add():
+    if request.method == "POST":
+        file = request.files["images"]
+        file.save(os.path.join(app.config["UPLOAD_FOLDER"], file.filename))
+        category = request.form.get("category")
+        proName = request.form.get("name")
+        proDesription = request.form.get("description")
+        proQuantity = request.form.get("quantity")
+        proPrice = request.form.get("price")
+        proAddress = request.form.get("address")
+        proPincode = request.form.get("pincode")
+
+        print(category)
+        r = Product(category, proName, proDesription, proQuantity, proPrice, proAddress, proPincode)
+        db.session.add(r)
+        db.session.commit()
+        flash("succesfully added")
+        return redirect("url_for('add')")
+
+
+        
+    return render_template("productAdd.html")
+
 
 
 
@@ -99,6 +152,10 @@ def query_all():
     
     return render_template("admin.html")
     
+@app.route("/view", methods = ["POST", "GET"])
+def view():
+    return render_template("view.html")
+
 
 
 

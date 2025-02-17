@@ -1,0 +1,415 @@
+<!--<html>-->
+<!---->
+<!--<body>-->
+<!--	<form action="/upload" method="POST" enctype="multipart/form-data">-->
+<!--		<label for="images">Upload multiple images:</label>-->
+<!--		<input type="file" id="images" name="images" accept="image/*" multiple required-->
+<!--			onchange="previewImages(event)">-->
+<!--		<br><br>-->
+<!--		<div id="preview-container" style="display: flex; gap: 10px; margin-top: 10px;"></div>-->
+<!--		<br><br>-->
+<!--		<label for="category">Product Category </label>-->
+<!--		<select>-->
+<!--			<option disabled selected>Select a category</option>-->
+<!--			<option value="weaving">Handloom Weaving</option>-->
+<!--			<option value="pottery"> Pottery & Ceramics</option>-->
+<!--			<option value="carpentry">Wood Carving & Carpentry</option>-->
+<!--			<option value="blacksmith">Metalwork & Blacksmithing</option>-->
+<!--			<option value="sculpture">Stone Carving & Sculpture</option>-->
+<!--			<option value="painting">Folk Art & Painting</option>-->
+<!--			<option value="other">Other</option>-->
+<!--		</select>-->
+<!---->
+<!--		<br><br>-->
+<!--		<label for="name">Product Name</label>-->
+<!--		<input type="text" name="name" required>-->
+<!--		<br><br>-->
+<!--		<label for="description">Product Description</label>-->
+<!--		<input type="text" name="description" required>-->
+<!--		<br><br>-->
+<!--		<label for="quantity">Quantity</label>-->
+<!--		<input type="number" name="quantity" min="1" required>-->
+<!--		<br><br>-->
+<!--		<label for="price">Price</label>-->
+<!--		<input type="number" name="price" min="1" required>-->
+<!--		<br><br>-->
+<!--		<input type="submit" value="submit">-->
+<!---->
+<!--	</form>-->
+<!---->
+<!---->
+<!--	<script>-->
+<!--		function previewImages(event) {-->
+<!--			let previewContainer = document.getElementById("preview-container");-->
+<!--			previewContainer.innerHTML = ""; // Clear previous previews-->
+<!---->
+<!--			let files = event.target.files;-->
+<!--			for (let file of files) {-->
+<!--				let img = document.createElement("img");-->
+<!--				img.src = URL.createObjectURL(file);-->
+<!--				img.style.width = "100px";-->
+<!--				img.style.borderRadius = "5px";-->
+<!--				img.style.boxShadow = "0 0 5px rgba(0,0,0,0.2)";-->
+<!--				img.style.objectFit = "cover";-->
+<!--				previewContainer.appendChild(img);-->
+<!--			}-->
+<!--		}-->
+<!--	</script>-->
+<!--</body>-->
+<!---->
+<!--</html>-->
+
+
+
+
+
+
+<html>
+
+<head>
+	<style>
+		@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i&display=swap");
+
+		.form {
+			font-family: "Source Sans Pro", sans-serif;
+			font-size: 16px;
+		}
+
+		.form * {
+			box-sizing: border-box;
+			line-height: 1.5;
+		}
+
+		.form__title {
+			font-size: 2em;
+			font-weight: 600;
+		}
+
+		.form__item {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.form__item>* {
+			align-self: flex-start;
+		}
+
+		.form__label {
+			font-weight: 600;
+			padding: 10px 0;
+		}
+
+		.form__input {
+			-webkit-appearance: none;
+
+			width: 100%;
+			max-width: 425px;
+
+			/* Fix for Safari/iOS date fields */
+			min-height: calc(0.9em + (0.8em * 2) + 0.6em);
+
+			padding: 0.8em;
+			font-size: 0.9em;
+			font-family: "Source Sans Pro", sans-serif;
+
+			outline: none;
+			border: 1px solid #dddddd;
+			border-radius: 4px;
+			background: #f9f9f9;
+			transition: background 0.25s, border-color 0.25s, color 0.25s;
+		}
+
+		.form__input:focus {
+			background: #ffffff;
+		}
+
+		.form__input::placeholder {
+			color: #bbbbbb;
+		}
+
+		.form__input--error {
+			color: #d50000;
+			background: #fff8f8;
+			border-color: #d50000;
+		}
+
+		.form__input--error::placeholder {
+			color: #ffbfbf;
+		}
+
+		.form__error {
+			padding-top: 10px;
+			color: #d50000;
+			font-size: 0.9em;
+			visibility: hidden;
+		}
+
+		.form__input--error+.form__error {
+			visibility: visible;
+		}
+
+		.form__input--small {
+			max-width: 250px;
+		}
+
+		textarea.form__input {
+			resize: none;
+			min-height: 80px;
+		}
+
+		.form__btn {
+			font-family: "Source Sans Pro", sans-serif;
+			font-weight: 600;
+			font-size: 1.1em;
+			padding: 10px 16px;
+			margin: 10px 0;
+
+			color: #ffffff;
+			background: #14b64a;
+			border: 2px solid #0fa942;
+			border-radius: 5px;
+
+			cursor: pointer;
+			outline: none;
+		}
+
+		.form__btn:active {
+			background: #0fa942;
+		}
+
+
+		.custom-select {
+			position: relative;
+			width: 250px;
+		}
+
+		select {
+			appearance: none;
+			width: 20%;
+			padding: 12px;
+			border: 2px solid #14b64a;
+			border-radius: 8px;
+			background-color: white;
+			font-size: 16px;
+			cursor: pointer;
+			outline: none;
+		}
+
+		.custom-select::after {
+			content: "▼";
+			position: absolute;
+			top: 50%;
+			right: 15px;
+			transform: translateY(-50%);
+			pointer-events: none;
+			color: #14b64a;
+			font-size: 14px;
+		}
+
+		select:focus {
+			border-color: #0fa942;
+			box-shadow: 0 0 5px rgba(20, 182, 74, 0.5);
+		}
+	</style>
+
+</head>
+
+<body>
+	<form action="{{url_for('add')}}" class="form" method="POST" enctype="multipart/form-data">
+		<div class="form__title">Add Product</div>
+
+		<p class="form__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
+			nostrum? Laudantium molestiae explicabo numquam animi corrupti debitis ratione,
+			accusamus nemo optio eum vero nesciunt facere aperiam ! Labore pariatur accusantium
+			exercitationem. </p>
+
+		<label class="form__label" for="images">Upload Multiple Images:</label>
+		<br>
+		<input type="file" id="images" name="images" accept="image/*" multiple required
+			onchange="previewImages(event)">
+		<div id="preview-container" style="display: flex; gap: 10px; margin-top: 10px;"></div>
+		<br><br>
+
+		<div class="form__item">
+
+			<label for="category" class="form__label">Product Category </label>
+			<select name="category">
+				<option disabled selected>Select a category</option>
+				<option value="weaving">Handloom Weaving</option>
+				<option value="pottery"> Pottery & Ceramics</option>
+				<option value="carpentry">Wood Carving & Carpentry</option>
+				<option value="blacksmith">Metalwork & Blacksmithing</option>
+				<option value="sculpture">Stone Carving & Sculpture</option>
+				<option value="painting">Folk Art & Painting</option>
+				<option value="other">Other</option>
+			</select>
+		</div>
+		<div class="form__item"><label for="givennames" class="form__label">Product Name</label>
+			<input type="text" class="form__input" name="name" id="givennames"
+				placeholder="Enter your product name">
+			<span class="form__error">A sample error
+				message</span>
+		</div>
+
+
+		<div class="form__item"><label for="message" class="form__label">Product Description</label><textarea
+				maxlength="500" class="form__input" name="description" id="message"
+				placeholder="Descibe your product"></textarea><span class="form__error">A sample error
+				message</span></div>
+
+
+		<div class="form__item">
+			<label for="quantity" class="form__label">Quantity</label>
+			<input type="number" class="form__input form__input--small" name="quantity" id="numusers"
+				min="1" placeholder="In Stock"><span class="form__error">A
+				sample error message</span>
+		</div>
+
+		<div class="form__item">
+			<label for="quantity" class="form__label">Price-₹</label>
+			<input type="number" class="form__input form__input--small" name="price" id="numusers" min="1"
+				placeholder="Price of an item"><span class="form__error">A
+				sample error message</span>
+		</div>
+
+		<!--<div class="form__item"><label for="expirydate" class="form__label">Expiration Date</label><input-->
+		<!--		type="date" class="form__input form__input--small" name="expirydate" id="expirydate"-->
+		<!--		placeholder="Enter an expiration date"><span class="form__error">A sample error-->
+		<!--		message</span></div>-->
+
+		<div class="form__item"><label for="message" class="form__label">Address</label><textarea
+				maxlength="500" class="form__input" name="address" id="message"
+				placeholder="Enter your address"></textarea><span class="form__error">A sample error
+				message</span></div>
+		<div class="form__item"><button class="form__btn" type="submit">Sign Up</button></div>
+	</form>
+	<script>document.addEventListener("DOMContentLoaded", function () {
+			document.querySelectorAll(".form__input").forEach(function (input) {
+				input.addEventListener("input", function () {
+					input.className = input.className.replace(/form__input--error ?/, "");
+				});
+			});
+		});
+
+
+		function previewImages(event) {
+			let previewContainer = document.getElementById("preview-container");
+			previewContainer.innerHTML = ""; // Clear previous previews
+
+			let files = event.target.files;
+			for (let file of files) {
+				let img = document.createElement("img");
+				img.src = URL.createObjectURL(file);
+				img.style.width = "100px";
+				img.style.borderRadius = "5px";
+				img.style.boxShadow = "0 0 5px rgba(0,0,0,0.2)";
+				img.style.objectFit = "cover";
+				previewContainer.appendChild(img);
+			}
+		}
+	</script>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
+</body>
+
+</html>
