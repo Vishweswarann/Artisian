@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MEnubar</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='userBase.css') }}">
+
+	{% block head %}
+
+	{% endblock head %}
+</head>
+
+<body>
+
+	<nav>
+		<div class="logo">
+			Artis<bold style="color: red;">i</bold>an
+		</div>
+		<div class="search_box">
+			<input type="search" placeholder="search here">
+			<span><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></span>
+		</div>
+		<div>
+			<ol>
+				<li><a href="{{url_for('user')}}">Home</a></li>
+				<li><a href="{{url_for('sell')}}">Sell</a></li>
+				<li><a href="#">Cart</a></li>
+				<li><a href="#">Logout</a></li>
+				<li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+			</ol>
+		</div>
+
+
+	</nav>
+
+	{% block content %}
+	{% endblock content %}
+</body>
+
+</html>

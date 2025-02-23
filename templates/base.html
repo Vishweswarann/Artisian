@@ -134,6 +134,11 @@
         footer a:hover {
             color: #fff;
         }
+
+
+        {% block style %}
+        
+        {% endblock style %}
     </style>
 </head>
 
@@ -159,6 +164,9 @@
     <div class="hero">
         <h1>Welcome to MyStore</h1>
         <p>Find the best products here with amazing deals!</p>
+            {% block content %}
+            
+            {% endblock content %}
     </div>
 
 
