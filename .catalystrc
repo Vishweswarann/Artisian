@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "12975000000008077",
+      "name": "ArtisianHub",
+      "domain": {
+        "id": "50025120243",
+        "name": "artisianhub-60037993963.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60037993963",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
