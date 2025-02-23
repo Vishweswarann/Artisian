@@ -7,7 +7,7 @@ import os
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "postgresql://users_cdvc_user:wbXXa5TJkj3tZ1pw78OojGLCheIstWnn@dpg-cutie8ogph6c73b33700-a.singapore-postgres.render.com/users_cdvc")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "vanakam"
 uploadFolder = "static/uploads"
@@ -318,6 +318,14 @@ def login():
 @app.route("/user", methods = ["POST", "GET"])
 def user():
     potteryProducts = pottery.query.all()
+    weavingProducts = weaving.query.all()
+    Products = pottery.query.all()
+    potteryProducts = pottery.query.all()
+    potteryProducts = pottery.query.all()
+    potteryProducts = pottery.query.all()
+    potteryProducts = pottery.query.all()
+    potteryProducts = pottery.query.all()
+    potteryProducts = pottery.query.all()
     return render_template("user.html", potteryProducts = potteryProducts)
 
 @app.route("/sell", methods = ["POST", "GET"])
@@ -419,7 +427,7 @@ def view():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-    # with app.app_context():  # Ensure db.create_all() runs in the app context
-    #     db.create_all()
+    with app.app_context():  # Ensure db.create_all() runs in the app context
+        db.create_all()
+        app.run(host="0.0.0.0", port=5000)
     # app.run(debug=True)
