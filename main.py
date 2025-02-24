@@ -7,7 +7,7 @@ import os
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "postgresql://users_cdvc_user:wbXXa5TJkj3tZ1pw78OojGLCheIstWnn@dpg-cutie8ogph6c73b33700-a.singapore-postgres.render.com/users_cdvc")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "vanakam"
 uploadFolder = "static/uploads"
@@ -319,14 +319,11 @@ def login():
 def user():
     potteryProducts = pottery.query.all()
     weavingProducts = weaving.query.all()
-    Products = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    potteryProducts = pottery.query.all()
-    return render_template("user.html", potteryProducts = potteryProducts)
+    carpentryProducts = carpentry.query.all()
+    blacksmithProducts = blacksmith.query.all()
+    sculptureProducts =sculpture.query.all()
+    paintingProducts =painting.query.all()
+    return render_template("user.html", potteryProducts = potteryProducts, weavingProducts = weavingProducts, carpentryProducts = carpentryProducts, blacksmithProducts = blacksmithProducts, sculptureProducts = sculptureProducts, paintingProducts = paintingProducts  )
 
 @app.route("/sell", methods = ["POST", "GET"])
 def sell():

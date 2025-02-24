@@ -25,10 +25,10 @@
 
 <!--product setion-->
 
-<h1>Best of Ceramics</h1>
+<h1>Best of Weaving</h1>
 <section>
 	<div class="product-container">
-		{% for products in potteryProducts[:6] %}
+		{% for products in weavingProducts[:6] %}
 
 		<div class="product">
 			<img src="{{products.Image}}" alt="Wireless Earbuds">
@@ -62,4 +62,85 @@
 	</div>
 	< </section>
 
+
+
+<h1>Best of Carpentry</h1>
+<section>
+	<div class="product-container">
+		{% for products in carpentryProducts[:6] %}
+
+		<div class="product">
+			<img src="{{products.Image}}" alt="Wireless Earbuds">
+			<h3>{{products.Name}}</h3>
+			<p class="price">From ₹{{products.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	< </section>
+
+
+
+
+<h1>Best of Metal-Works</h1>
+<section>
+	<div class="product-container">
+		{% for products in blacksmithProducts[:6] %}
+
+		<div class="product">
+			<img src="{{products.Image}}" alt="Wireless Earbuds">
+			<h3>{{products.Name}}</h3>
+			<p class="price">From ₹{{products.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	< </section>
+
+
+
+<h1>Best of Sculpture</h1>
+<section>
+	<div class="product-container">
+		{% for products in sculptureProducts[:6] %}
+
+		<div class="product">
+			<img src="{{products.Image}}" alt="Wireless Earbuds">
+			<h3>{{products.Name}}</h3>
+			<p class="price">From ₹{{products.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	< </section>
+
+
+
+
+<h1>Best of Painting</h1>
+<section>
+	<div class="product-container">
+		{% for products in paintingProducts[:6] %}
+
+		<div class="product">
+			<img src="{{products.Image}}" alt="Wireless Earbuds">
+			<h3>{{products.Name}}</h3>
+			<p class="price">From ₹{{products.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	< </section>
 	{% endblock content %}
