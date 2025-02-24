@@ -5,16 +5,16 @@
 <section class="category">
 	<div>
 		<ol>
-			<li><a href="#">Pottery</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
+			<li><a href="/pottery">Pottery</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
-			<li><a href="#">Handloom</a><i class='fas fa-angle-down' style="font-size: 12px;"></i>
+			<li><a href="/weaving">Weaving</a><i class='fas fa-angle-down' style="font-size: 12px;"></i>
 			</li>
-			<li><a href="#">Ceramics</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
+			<li><a href="/carpentry">Wood carving</a><i class='fas fa-angle-down' style="font-size: 10px;"></i></li>
+			<li><a href="/sculptures">Stone Sculptures</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
-			<li><a href="#">Wood carving</a><i class='fas fa-angle-down' style="font-size: 10px;"></i></li>
-			<li><a href="#">Stone Sculptures</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
+			<li><a href="/painting">Painting</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
-			<li><a href="#">Painting</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
+			<li><a href="/blacksmith">Metal-Works</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
 
 		</ol>
@@ -36,7 +36,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/weaving"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -55,7 +55,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/pottery"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -75,7 +75,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/carpentry"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -96,7 +96,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/blacksmith"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -116,7 +116,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/sculpture"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -137,7 +137,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "/painting"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}

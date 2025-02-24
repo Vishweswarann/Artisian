@@ -1,0 +1,61 @@
+{% extends "userBase.html" %}
+
+{% block content %}
+
+
+<section>
+	<div class="product-container">
+		{% for product in products %}
+
+		<div class="product">
+			<img src="{{product.Image}}" alt="Wireless Earbuds">
+			<h3>{{product.Name}}</h3>
+			<p class="price">From ₹{{product.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	 </section>
+
+<section>
+	<div class="product-container">
+		{% for product in products[6:12] %}
+
+		<div class="product">
+			<img src="{{product.Image}}" alt="Wireless Earbuds">
+			<h3>{{product.Name}}</h3>
+			<p class="price">From ₹{{product.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	 </section>
+
+
+<section>
+	<div class="product-container">
+		{% for product in products[12:18] %}
+
+		<div class="product">
+			<img src="{{product.Image}}" alt="Wireless Earbuds">
+			<h3>{{product.Name}}</h3>
+			<p class="price">From ₹{{product.Price}}</p>
+			<!--<p class="rating">⭐ 4.5/5</p>-->
+			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
+			<button class="buyButton" type="submit">Buy Now</button>
+		</div>
+
+		{% endfor %}
+	</div>
+	 </section>
+
+
+
+
+{% endblock content %}

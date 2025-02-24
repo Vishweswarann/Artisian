@@ -415,9 +415,37 @@ def query_all():
     
     return render_template("admin.html")
     
-@app.route("/view", methods = ["POST", "GET"])
-def view():
-    return render_template("view.html")
+@app.route("/<name>")
+def allProducts(name):
+    
+    if name == "pottery":
+        products = pottery.query.all()
+        return render_template("allProducts.html", products = products )
+
+
+    elif name == "weaving":
+        products = weaving.query.all()
+        return render_template("allProducts.html", products = products )
+
+
+    elif name == "sculpture":
+        products = sculpture.query.all()
+        return render_template("allProducts.html", products = products )
+
+
+    elif name == "blacksmith":
+        products = blacksmith.query.all()
+        return render_template("allProducts.html", products = products )
+        
+
+    elif name == "painting":
+        products = painting.query.all()
+        return render_template("allProducts.html", products = products )
+
+    elif name == "carpentry":
+        products = carpentry.query.all()
+        return render_template("allProducts.html", products = products )
+
 
 
 
