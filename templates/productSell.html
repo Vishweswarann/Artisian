@@ -1,70 +1,113 @@
 {% extends "userBase.html" %}
 
-
 {% block head %}
-
-	<link rel = "stylesheet" href = "{{url_for('static', filename='productSell.css')}}"
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='productSell.css') }}">
 {% endblock head %}
 
 {% block content %}
-<section>
-	<form action="/sell" method="POST" enctype="multipart/form-data">
+<section class="form-container">
+    <form action="/sell" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Sell or Auction Your Product</legend>
 
-		<fieldset>
-			<legend>Product Info</legend>
-	
-		<label for="image">Image</label>
-		<input type="file" name="images" accept="image/*" required>
+            <!-- Image Upload -->
+            <label for="image">Upload Product Image</label>
+            <input type="file" id="image" name="images" accept="image/*" required>
 
-		<select name = "category" required>
-			<option disabled selected>Select a category</option>
-			<option value="weaving">Handloom Weaving</option>
-			<option value="pottery"> Pottery & Ceramics</option>
-			<option value="carpentry">Wood Carving & Carpentry</option>
-			<option value="blacksmith">Metalwork & Blacksmithing</option>
-			<option value="sculpture">Stone Carving & Sculpture</option>
-			<option value="painting">Folk Art & Painting</option>
-			<option value="other">Other</option>
-		</select>
+            <!-- Sell or Auction -->
+            <div class="radioAuction">
+                <label>Would you like to sell this product or put it up for auction?</label>
+                <div class="radioOptions">
+                    <input type="radio" id="sell" name="radio" value="sell" onclick="toggleFields()" checked required>
+                    <label for="sell">Sell</label>
+                    
+                    <input type="radio" id="auction" name="radio" value="auction" onclick="toggleFields()" required>
+                    <label for="auction">Auction</label>
+                </div>
+            </div>
 
+            <!-- Category Selection -->
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option disabled selected>Select a category</option>
+                <option value="weaving">Handloom Weaving</option>
+                <option value="pottery">Pottery & Ceramics</option>
+                <option value="carpentry">Wood Carving & Carpentry</option>
+                <option value="blacksmith">Metalwork & Blacksmithing</option>
+                <option value="sculpture">Stone Carving & Sculpture</option>
+                <option value="painting">Folk Art & Painting</option>
+                <option value="other">Other</option>
+            </select>
 
+            <!-- Product Details -->
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter product name" required>
 
-		<label for="name">Name</label>
-		<input type="text" name="name" required>
+            <label for="description">Product Description (min 50 words)</label>
+            <textarea id="description" name="description" placeholder="Describe your product in detail" required></textarea>
 
-		<label for="description">Description about the product (min 50 words)</label>
-		<textarea rows="5" cols="30" name = "description" required></textarea>
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
 
-		<label for="quantity">Quantity</label>
-		<input type="number" name="quantity" required>
+            <!-- Price Field (Only for Sell) -->
+            <div id="priceField">
+                <label for="price">Price
 
-		<label for="price">Price</label>
-		<input type="number" name="price" required>
+                <input type="number" id="price" name="price" min="1" placeholder="Enter price"></label>
+            </div>
 
-		<label for="text">Enter the dimensions of the product: </label>
+            <!-- Price Field (Only for Auction) -->
+            <div id="priceFieldAuction">
+                <label for="price">Base Price</label>
+                <input type="number" id="price" name="price" min="1" placeholder="Enter Base price">
+                <label for="days">Auction Duration</label>
+                <input type="number" id="days" name="days" min="1" placeholder="Enter the number of days the auction should run">
+                <label for="minIncrement">Minimum Bid</label>
+                <input type="number" id="minIncrement" name="minIncrement" min="1" placeholder="Enter the minimum bid that the buyer can make">
 
-		<label for="length">Length</label>
-		<input type="number" name="length" required>
+            </div>
+		
 
-		<label for="width">Width</label>
-		<input type="number" name="width" required>
+            <!-- Dimensions -->
+            <label>Product Dimensions (in cm)</label>
+            <div class="dimension-fields">
+                <input type="number" id="length" name="length" min="1" placeholder="Length" required>
+                <input type="number" id="width" name="width" min="1" placeholder="Width" required>
+                <input type="number" id="height" name="height" min="1" placeholder="Height" required>
+            </div>
 
-		<label for="height">Height</label>
-		<input type="number" name="height" required>
+            <!-- Address & Contact -->
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
 
-		<label for="address">Address</label>
-		<textarea rows="5" cols="30" name = "address" required></textarea>
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
 
-		<label for="contactNumber">Phone Number</label>
-		<input type="number" name="phoneNumber" required>
-
-		<input type="submit" value="submit">
-
-
-		</fieldset>
-	</form>
+            <!-- Submit Button -->
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
 </section>
 
+<!-- JavaScript to Show/Hide Price Field -->
+<script>
+    function toggleFields() {
+        const priceField = document.getElementById("priceField");
+        const priceFieldAuction = document.getElementById("priceFieldAuction");
+        const sellRadio = document.getElementById("sell");
+
+        if (sellRadio.checked) {
+            priceField.style.display = "block";
+            priceFieldAuction.style.display = "none";
+		
+        } else {
+            priceField.style.display = "none";
+            priceFieldAuction.style.display = "block";
+        }
+    }
+
+    // Ensure correct field visibility on page load
+    window.onload = toggleFields;
+</script>
 
 {% endblock content %}

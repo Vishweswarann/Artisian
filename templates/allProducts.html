@@ -5,7 +5,7 @@
 
 <section>
 	<div class="product-container">
-		{% for product in products %}
+		{% for product in products[:6] %}
 
 		<div class="product">
 			<img src="{{product.Image}}" alt="Wireless Earbuds">
@@ -13,7 +13,8 @@
 			<p class="price">From ₹{{product.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<!--<button class="buyButton" type="submit">Buy Now</button>-->
+			<a href = "{{url_for('buy', category = categoryOfAllProducts, id = product.id)}}"><button class="buyButton" type="submit">Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -30,7 +31,7 @@
 			<p class="price">From ₹{{product.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "{{url_for('buy', category = categoryOfAllProducts, id = product.id)}}"><button class="buyButton" type="submit">Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -48,7 +49,7 @@
 			<p class="price">From ₹{{product.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{product.Length}}x{{product.Width}}x{{product.Height}} cm</p>
-			<button class="buyButton" type="submit">Buy Now</button>
+			<a href = "{{url_for('buy', category = categoryOfAllProducts, id = product.id)}}"><button class="buyButton" type="submit">Buy Now</button> </a>
 		</div>
 
 		{% endfor %}

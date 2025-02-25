@@ -1,67 +1,130 @@
+/* Global Reset */
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+	font-size: 10x;
 }
 
+/* Form Container */
 form {
-	margin: 0px 50px;
+	max-width: 600px;
+	margin: 30px auto;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Fieldset */
 fieldset {
-	margin: 2em 20px;
-	padding: 1em 5em;
-	border: solid 1px #ccc;
-	border-radius: 6px;
-	min-height: 200px;
+	border: none;
+	padding: 20px;
 }
 
-
+/* Legend */
 legend {
-	font-size: 1.25em;
-	padding: 0 0.25em;
-	color: #999;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #444;
+	text-align: center;
+	margin-bottom: 15px;
 }
 
-
+/* Labels */
 label {
+	font-size: 1em;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 5px;
 	display: block;
-	margin-top: 1em;
 }
 
-.checks label {
-	margin-top: 0;
+/* Input Fields */
+input,
+textarea,
+select {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 1em;
+	transition: 0.3s ease;
 }
 
-label:first-of-type {
-	margin-top: 0;
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: #555;
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-
-
-input {
-	display: block;
-	padding: .5em;
-	border: solid 1px #999;
-}
-
-input[type="email"],
-input[type="text"] {
-	width: 15em;
-}
-
+/* Textarea */
 textarea {
-	min-height: 8em;
-	min-width: 100%;
-	padding: .5em;
-	border: solid 1px #999;
+	resize: vertical;
+	min-height: 100px;
 }
 
+/* Radio Buttons */
+.radioAuction {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-top: 10px;
+}
 
+.radioOptions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.radioOptions label {
+	font-weight: normal;
+}
+
+.radioOptions input[type="radio"] {
+	width: auto;
+	margin: 0;
+}
+
+/* File Input */
+input[type="file"] {
+	padding: 5px;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+/* Submit Button */
 input[type="submit"] {
-	padding: .53m 1e, ;
-	border-radius: 6px;
 	background-color: #333;
-	color: #fff;
-	font-size: .8em;
+	color: white;
+	border: none;
+	padding: 12px;
+	font-size: 1em;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s ease;
+	width: 100%;
+	margin-top: 15px;
+}
+
+input[type="submit"]:hover {
+	background-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	form {
+		width: 90%;
+		padding: 15px;
+	}
+
+	.radioAuction {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 }

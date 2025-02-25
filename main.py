@@ -413,31 +413,31 @@ def allProducts(name):
     
     if name == "pottery":
         products = pottery.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "pottery" )
 
 
     elif name == "weaving":
         products = weaving.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "weaving" )
 
 
     elif name == "sculpture":
         products = sculpture.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "sculpture" )
 
 
     elif name == "blacksmith":
         products = blacksmith.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "blacksmmith" )
         
 
     elif name == "painting":
         products = painting.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "painting" )
 
     elif name == "carpentry":
         products = carpentry.query.all()
-        return render_template("allProducts.html", products = products )
+        return render_template("allProducts.html", products = products, categoryOfAllProducts = "carpentry" )
 
     return redirect(url_for("user"))
 @app.route("/buy")
@@ -477,13 +477,13 @@ def buy():
 
 
 
-if not os.path.exists("users.sqlite3"):
-    db.create_all()
-
-# with app.app_context():
+# if not os.path.exists("users.sqlite3"):
 #     db.create_all()
+
+with app.app_context():
+    db.create_all()
 
 
 if __name__ == "__main__":
-        app.run(host="0.0.0.0", port=5000)
-        # app.run(debug=True)
+        # app.run(host="0.0.0.0", port=5000)
+        app.run(debug=True)

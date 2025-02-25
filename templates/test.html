@@ -1,43 +1,28 @@
-<section>
-	<form>
-		<fieldset>
-			<legend>Product Info</legend>
-		</fieldset>
-		<label for="image">Upload Image</label>
-		<input type="file" name="image" accept="image/*" required>
+<form>
+	<label for="auction">Do you want to do an auction for this item</label>
+	<label for="yesBid">Yes</label>
+	<input type="radio" value="yes">
+	<label for="yesBid">No</label>
+	<input type="radio" value="no">
+</form>
+
+<select>
+	<option value="hj" selected></option>
+</select>
+
+<input type="radio" name="" value="" che>
+<label for="radio">Would you like to sell this product or put it up for auction</label>
+
+<script>
+	function toggleFields() {
+		const selectedValue = document.querySelector('input[name="radioAuction"]:checked').value;
+		const extraFields = document.getElementById("extraFields");
 
 
-		<label for="name">Name</label>
-		<input type="text" name="price" required>
-
-		<label for="description">Description about the product (min 50 words)</label>
-		<textarea rows="5" cols="30"></textarea>
-
-		<label for="quantity">Quantity</label>
-		<input type="number" name="quantity" required>
-
-		<label for="price">Price</label>
-		<input type="number" name="price" required>
-
-		<label for="text">Enter the dimensions of the product: </label>
-
-		<label for="length">Length</label>
-		<input type="number" name="length" required>
-
-		<label for="width">Width</label>
-		<input type="number" name="width" required>
-
-		<label for="height">Height</label>
-		<input type="number" name="height" required>
-
-		<label for="address">Address</label>
-		<textarea rows="5" cols="30" required></textarea>
-
-		<label for="phoneNumber">Phone Number</label>
-		<input type="number" name="phoneNumber" required>
-
-		<input type="submit" value="submit">
-
-
-	</form>
-</section>
+		if (selectedValue === "yes") {
+			price.style.display = "block";
+		} else {
+			price.style.display = "none";
+		}
+	}
+</script>

@@ -152,7 +152,7 @@ nav .search_box span:hover {
 	display: flex;
 	gap: 20px;
 	overflow-x: auto;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 1);
 	margin: 3%;
 }
 
