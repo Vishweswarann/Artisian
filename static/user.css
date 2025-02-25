@@ -1,0 +1,11 @@
+h1 {
+	background-color: #0a5071;
+	color: white;
+	display: inline-block;
+	top: 30px;
+	position: relative;
+	margin: 0 3%;
+	text-align: initial;
+	padding: 5px;
+	padding-right: 10px;
+}

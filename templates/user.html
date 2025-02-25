@@ -1,6 +1,12 @@
 {% extends "userBase.html" %}
 
 
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'user.css')}}">
+
+{% endblock %}
+
 {% block content %}
 <section class="category">
 	<div>
@@ -10,7 +16,7 @@
 			<li><a href="/weaving">Weaving</a><i class='fas fa-angle-down' style="font-size: 12px;"></i>
 			</li>
 			<li><a href="/carpentry">Wood carving</a><i class='fas fa-angle-down' style="font-size: 10px;"></i></li>
-			<li><a href="/sculptures">Stone Sculptures</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
+			<li><a href="/sculpture">Stone Sculptures</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
 			<li><a href="/painting">Painting</a><i class='fas fa-angle-down' style="font-size: 10px;"></i>
 			</li>
@@ -36,7 +42,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/weaving"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "weaving", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -55,7 +61,8 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/pottery"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "pottery", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
+
 		</div>
 
 		{% endfor %}
@@ -75,7 +82,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/carpentry"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "carpentry", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -96,7 +103,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/blacksmith"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "blacksmith", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -116,7 +123,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/sculpture"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "sculpture", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}
@@ -137,7 +144,7 @@
 			<p class="price">From ₹{{products.Price}}</p>
 			<!--<p class="rating">⭐ 4.5/5</p>-->
 			<p class="dimension">Dimensions: {{products.Length}}x{{products.Width}}x{{products.Height}} cm</p>
-			<a href = "/painting"><button class="buyButton" type="submit" >Buy Now</button> </a>
+			<a href = "{{url_for('buy', category = "painting", id = products.id)}}"><button class="buyButton" type="submit" >Buy Now</button> </a>
 		</div>
 
 		{% endfor %}

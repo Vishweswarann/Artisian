@@ -1,0 +1,67 @@
+body {
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 80%;
+	margin: 20px auto;
+}
+
+.product-image {
+	float: left;
+	width: 300px;
+	margin-right: 20px;
+}
+
+.product-image img {
+	width: 100%;
+	height: auto;
+}
+
+.product-details {
+	overflow: hidden;
+}
+
+.price {
+	font-size: 24px;
+	font-weight: bold;
+	color: #2874f0;
+}
+
+.original-price {
+	text-decoration: line-through;
+	color: #878787;
+	margin-left: 10px;
+}
+
+.discount {
+	color: green;
+	margin-left: 10px;
+}
+
+.offers {
+	margin-top: 20px;
+}
+
+.offers ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.offers li {
+	margin-bottom: 5px;
+}
+
+.actions {
+	margin-top: 20px;
+}
+
+.actions button {
+	padding: 10px 20px;
+	background-color: #2874f0;
+	color: white;
+	border: none;
+	cursor: pointer;
+}

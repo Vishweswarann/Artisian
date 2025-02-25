@@ -262,7 +262,7 @@ class other(db.Model):
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("Home1.html")
 
 @app.route("/signup", methods = ["POST", "GET"])
 def signup():
@@ -300,15 +300,12 @@ def login():
         if found_user:
             if found_user.password == password:
                 session["userId"] = found_user.id
-                print(session["userId"])
                 return redirect(url_for('user'))
     
             else:
-                # print("hello")
                 flash("Invalid User credentials")
                 return redirect(url_for('login'))
         else:
-            print("hello")
             flash("Invalid User credentials")
             return redirect(url_for('login'))
 
@@ -353,11 +350,9 @@ def sell():
         img_path = app.config["UPLOAD_FOLDER"] + '/' + safe_imgname
         img.save(img_path)
 
-        print(img_path)
 
 
 
-        print(category)
 
         if category == "pottery":
             r = pottery(session["userId"], proName, proDesription, proQuantity, proPrice, proAddress,proHeight, proWidth,proLength, proContact,img_path)
@@ -387,7 +382,6 @@ def sell():
         db.session.add(r)
         db.session.commit()
         flash("succesfully added")
-        print("succesfully added")
         return redirect(url_for('sell'))
 
 
@@ -406,7 +400,6 @@ def query_all():
         if user:
             db.session.delete(user)
             db.session.commit()
-            print("deleted")
     all = Users.query.all()
     if all:
         for user in all:
@@ -446,13 +439,48 @@ def allProducts(name):
         products = carpentry.query.all()
         return render_template("allProducts.html", products = products )
 
+    return redirect(url_for("user"))
+@app.route("/buy")
+def buy():
 
+    id = request.args.get("id")
+    category = request.args.get("category")
 
+    if category == "pottery":
+
+        productDetails = pottery.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "weaving":
+        productDetails = weaving.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "carpenrtry":
+        productDetails = carpentry.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "blacksmith":
+        productDetails = blacksmith.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "sculpture":
+        productDetails = sculpture.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "painting":
+        productDetails = painting.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    elif category == "other":
+        productDetails = other.query.get(id)
+        return render_template("buy.html", productDetails = productDetails)
+
+    
 
 
 
 if __name__ == "__main__":
     with app.app_context():  # Ensure db.create_all() runs in the app context
         db.create_all()
-        app.run(host="0.0.0.0", port=5000)
-        # app.run(debug=True)
+        # app.run(host="0.0.0.0", port=5000)
+        app.run(debug=True)
