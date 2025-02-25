@@ -475,12 +475,15 @@ def buy():
         productDetails = other.query.get(id)
         return render_template("buy.html", productDetails = productDetails)
 
-    
 
+
+if not os.path.exists("users.sqlite3"):
+    db.create_all()
+
+# with app.app_context():
+#     db.create_all()
 
 
 if __name__ == "__main__":
-    with app.app_context():  # Ensure db.create_all() runs in the app context
-        db.create_all()
         app.run(host="0.0.0.0", port=5000)
         # app.run(debug=True)
