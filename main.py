@@ -6,10 +6,12 @@ from datetime import date, datetime
 import os
 
 
+
+
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'users3.sqlite3')
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
+db_path = os.path.join(basedir, 'users.sqlite3')
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "vanakam"
 uploadFolder = "static/uploads"
@@ -479,13 +481,11 @@ def buy():
 
 
 
-# if not os.path.exists("users.sqlite3"):
-#     db.create_all()
-
 with app.app_context():
-    db.create_all()
-
+    if not os.path.exists(db_path):  # Prevent overwriting an existing database
+        db.create_all()
 
 if __name__ == "__main__":
-        # app.run(host="0.0.0.0", port=5000)
-        app.run(debug=True)
+    app.run(debug=True)
+
+
